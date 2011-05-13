@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google AJAX Language API - Basic Transliteration</title>
+       <script src="https://www.google.com/jsapi?key=ABQIAAAAvBr3E5gjsEcbIKWhctpmAxRpQYh-aYtvQo0i7nvVd6d9bhl1exQlUHxuWciZUEMKMNoGYoRj8jqX3w" type="text/javascript"></script>
+    <script type="text/javascript">
+
+    google.load("language", "1");
+
+    function initialize() {
+      google.language.transliterate(["Namaste"], "en", "hi", function(result) {
+        if (!result.error) {
+          var container = document.getElementById("transliteration");
+          if (result.transliterations && result.transliterations.length > 0 &&
+            result.transliterations[0].transliteratedWords.length > 0) {
+            container.innerHTML = result.transliterations[0].transliteratedWords[0];
+          }
+        }
+      });
+    }
+    google.setOnLoadCallback(initialize);
+
+    </script>
+  </head>
+
+  <body>
+    <div id="transliteration"></div>
+  </body>
+</html>
